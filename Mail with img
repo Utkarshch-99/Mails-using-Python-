@@ -1,0 +1,19 @@
+import smtplib
+import os 
+from email.message import EmailMessage
+email_id=os.environ.get('EMAIL_ADDR')
+email_pass=os.environ.get('EMAIL_PASS')
+
+msg = EmailMessage()
+msg['Subject']='Fight against corona'
+msg['From']= email_id
+msg['To']= 'whiskeyok1999@gmail.com'
+msg.set_content("Hey, hi let's fight corona by staying at home")
+
+
+with smtplib.SMTP_SSL('localhost',465) as smtp:
+
+  smtp.login(email_id,email_pass)
+
+
+  smtp.sendmail_message(msg)
